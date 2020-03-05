@@ -13,7 +13,7 @@ Project tracker for weekly CS50 projects.
 8. Week 7 SQL
 9. Week 8 Information
 
-Then on to the Web Development track
+Then on to the Web Development track:
 * Introduction
 * HTTP
 * HTML
