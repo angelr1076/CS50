@@ -1,5 +1,7 @@
 
 [Link to Penguin Paddle](https://scratch.mit.edu/projects/370387487)
+[link text itself]: http://www.reddit.com
+
 
 # Scratch
 It’s time to choose your own adventure! Your assignment, quite simply, is to implement in Scratch any project of your choice, be it an interactive story, game, animation, or anything else, subject only to the following requirements:
