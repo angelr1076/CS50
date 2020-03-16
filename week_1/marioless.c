@@ -28,3 +28,48 @@ int main(void)
         printf("\n");
     }
 }
+
+// Alternate way
+#include <cs50.h>
+#include <stdio.h>
+
+void print_spaces(int);
+void print_hashes(int);
+
+int main(void)
+{
+    int height, spaces, hashes;
+    do
+    {
+        height = get_int("Height: ");
+
+    } while (height < 1 || height > 23);
+
+    spaces = height - 1;
+    hashes = 1;
+
+    for (int i = 0; i < height; i++)
+    {
+        print_spaces(spaces);
+        print_hashes(hashes);
+        printf("\n");
+        spaces--;
+        hashes++;
+    }
+}
+
+void print_spaces(int num)
+{
+    for (int i = 0; i < num; i++)
+    {
+        printf(" ");
+    }
+}
+
+void print_hashes(int num)
+{
+    for (int i = 0; i < num; i++)
+    {
+        printf("#");
+    }
+}
