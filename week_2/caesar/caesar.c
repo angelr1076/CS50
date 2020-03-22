@@ -33,8 +33,6 @@ int main(int argc, char *argv[])
         for (int i = 0; i < strlen(plaintext); i++)
         {
             // If it is an uppercase letter, rotate it, preserving case, then print out the rotated character, A-Z (65 - 90)
-            // ci (ith character of the cipher text) = p is plaintext (unencrypted), pi is the ith character in p + k (secret key) % 26 remainder when dividing by numbers in the alphabet
-            // We can directly apply it to our formula because ASCII starts at 65, ex. A or 90, ex. Z
             if (isupper(plaintext[i]))
             {
                 char letter = (((plaintext[i] - 'A') + key) % 26) + 'A';
