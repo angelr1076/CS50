@@ -43,7 +43,7 @@ int main(void)
     {
         height = get_int("Height: ");
 
-    } while (height < 1 || height > 23);
+    } while (height < 1 || height > 8);
 
     spaces = height - 1;
     hashes = 1;

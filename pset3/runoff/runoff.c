@@ -244,6 +244,5 @@ void eliminate(int min)
         }
     }
     // Updates the candidates eliminated struct to true
-
     return;
 }
