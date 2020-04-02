@@ -2,8 +2,8 @@
 #include <math.h>
 #include <stdio.h>
 
-void hashes(int num);
-void spaces(int num);
+int print_hashes(int num);
+int print_spaces(int num);
 
 int main(void)
 {
@@ -19,17 +19,17 @@ int main(void)
 
     for (int i = 0; i < height; i++)
     {
-        spaces(count_spaces);
-        hashes(count_hashes);
+        print_spaces(count_spaces);
+        print_hashes(count_hashes);
         printf("  ");
-        hashes(count_hashes);
+        print_hashes(count_hashes);
         printf("\n");
         count_spaces--;
         count_hashes++;
     }
 }
 
-void hashes(int num)
+int print_hashes(int num)
 {
     for (int i = 0; i < num; i++)
     {
@@ -37,7 +37,7 @@ void hashes(int num)
     }
 }
 
-void spaces(int num)
+int print_spaces(int num)
 {
     for (int i = 0; i < num; i++)
     {
