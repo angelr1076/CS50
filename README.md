@@ -12,15 +12,3 @@ Project tracker for weekly CS50 projects.
 7. Week 6 Python 🐍
 8. Week 7 SQL
 9. Week 8 Information
-
-Then on to the Web Development track:
-* Introduction
-* HTTP
-* HTML
-* CSS
-* JavaScript
-* Homepage
-* Flask
-* Databases
-* Finance
-* Conclusion
