@@ -2,6 +2,8 @@
 
 What does it even mean to filter an image? You can think of filtering an image as taking the pixels of some original image, and modifying each pixel in such a way that a particular effect is apparent in the resulting image.
 
+The files are already written out for you. You just need to create the image filtering functions in helpers.c .
+
 ## Grayscale
 
 One common filter is the “grayscale” filter, where we take an image and want to convert it to black-and-white. How does that work?
