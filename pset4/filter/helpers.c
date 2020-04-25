@@ -6,19 +6,19 @@
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
-    // Each pixels rgb values need to be the same
+
     for (int height_i = 0; height_i < height; height_i++)
     {
-        for (int width_i = 0; width_i < width; width_i++)
+        for (int width_j = 0; width_j < width; width_j++)
         {
-            // Calc the average of the rgb for each pixel
+            // Calc the average of the rgb for each pixel. Each pixels rgb values need to be the same
             // Need integer values, round to the nearest integer
-            int rgbt_average = round((image[height_i][width_i].rgbtBlue + image[height_i][width_i].rgbtGreen + image[height_i][width_i].rgbtRed) / 3.0);
+            int rgbt_average = round((image[height_i][width_j].rgbtBlue + image[height_i][width_j].rgbtGreen + image[height_i][width_j].rgbtRed) / 3.0);
 
             // Change each rgbt value to its average value
-            image[height_i][width_i].rgbtBlue = rgbt_average;
-            image[height_i][width_i].rgbtGreen = rgbt_average;
-            image[height_i][width_i].rgbtRed = rgbt_average;
+            image[height_i][width_j].rgbtBlue = rgbt_average;
+            image[height_i][width_j].rgbtGreen = rgbt_average;
+            image[height_i][width_j].rgbtRed = rgbt_average;
         }
     }
     return;
@@ -29,23 +29,22 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
 {
     for (int height_i = 0; height_i < height; height_i++)
     {
-        for (int width_i = 0; width_i < width; width_i++)
+        for (int width_j = 0; width_j < width; width_j++)
         {
             // Get pixel color values
-            int originalBlue = image[height_i][width_i].rgbtBlue;
-            int originalGreen = image[height_i][width_i].rgbtGreen;
-            int originalRed = image[height_i][width_i].rgbtRed;
+            int originalBlue = image[height_i][width_j].rgbtBlue;
+            int originalGreen = image[height_i][width_j].rgbtGreen;
+            int originalRed = image[height_i][width_j].rgbtRed;
 
             // Take each pixel and convert it to the sepia equivalent with the formula, and round the number if it's not an integer
             int sepiaBlue = round(.272 * originalRed + .534 * originalGreen + .131 * originalBlue);
             int sepiaGreen = round(.349 * originalRed + .686 * originalGreen + .168 * originalBlue);
             int sepiaRed = round(.393 * originalRed + .769 * originalGreen + .189 * originalBlue);
 
-            // Values should be capped at 255
-            // Convert each pixel to its sepia value
-            image[height_i][width_i].rgbtBlue = sepiaBlue > 255 ? sepiaBlue = 255 : sepiaBlue;
-            image[height_i][width_i].rgbtGreen = sepiaGreen > 255 ? sepiaGreen = 255 : sepiaGreen;
-            image[height_i][width_i].rgbtRed = sepiaRed > 255 ? sepiaRed = 255 : sepiaRed;
+            // Values should be capped at 255; Convert each pixel to its sepia value
+            image[height_i][width_j].rgbtBlue = sepiaBlue > 255 ? sepiaBlue = 255 : sepiaBlue;
+            image[height_i][width_j].rgbtGreen = sepiaGreen > 255 ? sepiaGreen = 255 : sepiaGreen;
+            image[height_i][width_j].rgbtRed = sepiaRed > 255 ? sepiaRed = 255 : sepiaRed;
         }
     }
     return;
@@ -54,31 +53,67 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
 // Reflect image horizontally
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
-    // Each image is just a 2-dim array
-    // Rows stay in the same order, but the pixels in the row switch places
-    // Take each row and apply the same filter to that row
-    // If there is an even number of pixels, there is no middle so they all switch
-    // swap pixels on horizontally opposite sides
-
+    for (int height_i = 0; height_i < height; height_i++)
+    {
+        for (int width_j = 0; width_j < width / 2; width_j++)
+        {
+            // Make a copy of RGBTRIPLE image
+            RGBTRIPLE copy_image = image[height_i][width_j];
+            // Swap the first pixel with the last and work from the end to the middle
+            image[height_i][width_j] = image[height_i][width - 1 - width_j];
+            image[height_i][width - 1 - width_j] = copy_image;
+        }
+    }
     return;
 }
 
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
-    // Box blur - compute the new value of the pixels by taking the average of the 9 pixels in a grid
-    // We won't always have 9 pixels, so we'll average 6 color values within one row and one column
-    // You may only need 4 for a corner pixel
+    //Create new array
+    RGBTRIPLE copy_image[height][width];
 
+    //Make a copy, pixel for pixel inside of a 2-dimensional array
+    for (int height_i = 0; height_i < height; height_i++)
+    {
+        for (int width_j = 0; width_j < width; width_j++)
+        {
+            //make copy in array
+            copy_image[height_i][width_j] = image[height_i][width_j];
+        }
+    }
+
+    for (int height_i = 0; height_i < height; height_i++)
+    {
+        for (int width_j = 0; width_j < width; width_j++)
+        {
+            //Create counter and int to store each of the connected surrounding colors
+            float counter = 0;
+            float newRed = 0;
+            float newGreen = 0;
+            float newBlue = 0;
+
+            //Check for the surrounding pixels connected to copy_image[i][j] by no more than 1 pixel
+            for (int height_k = -1; height_k < 2; height_k++)
+            {
+                for (int width_l = -1; width_l < 2; width_l++)
+                {
+                    //A pixel exists if it is greater than 0 and less than height or width
+                    if (height_i + height_k >= 0 && height_i + height_k < height && width_j + width_l >= 0 && width_j + width_l < width)
+                    {
+                        //Store the value in the new color int and increase the counter to get a divisor for the avg
+                        newRed += copy_image[height_i + height_k][width_j + width_l].rgbtRed;
+                        newGreen += copy_image[height_i + height_k][width_j + width_l].rgbtGreen;
+                        newBlue += copy_image[height_i + height_k][width_j + width_l].rgbtBlue;
+                        counter++;
+                    }
+                }
+            }
+            //Average color value of connected surrounding pixels and assign it to image round the temp and divide by counter
+            image[height_i][width_j].rgbtRed = round(newRed / counter);
+            image[height_i][width_j].rgbtGreen = round(newGreen / counter);
+            image[height_i][width_j].rgbtBlue = round(newBlue / counter);
+        }
+    }
     return;
 }
-
-
-// To get a row, use image[0], image[1] etc.
-// To get the last row, use image[height - 1]
-
-// image[0] is the first row, image [0][0] is the first pixel, image[0][1] is the second and so on
-// How do we modify the pixel, it's just a struct as so:
-// image[2][3].rgbtRed = 0;
-// image[2][3].rgbtGreen = 0;
-
