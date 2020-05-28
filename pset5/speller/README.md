@@ -1,5 +1,7 @@
 # Speller
 
+All todos in speller.c need to be completed. The rest is done for you.
+
 Be sure to read this specification in its entirety before starting so you know what to do and how to do it!
 
 Implement a program that spell-checks a file, a la the below, using a hash table.
