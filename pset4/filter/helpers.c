@@ -13,7 +13,10 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
         {
             // Calc the average of the rgb for each pixel. Each pixels rgb values need to be the same
             // Need integer values, round to the nearest integer
-            int rgbt_average = round((image[height_i][width_j].rgbtBlue + image[height_i][width_j].rgbtGreen + image[height_i][width_j].rgbtRed) / 3.0);
+            int rgbt_average = round((image[height_i][width_j].rgbtBlue +
+                                      image[height_i][width_j].rgbtGreen +
+                                      image[height_i][width_j].rgbtRed) /
+                                     3.0);
 
             // Change each rgbt value to its average value
             image[height_i][width_j].rgbtBlue = rgbt_average;
