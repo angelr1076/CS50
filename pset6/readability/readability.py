@@ -16,7 +16,7 @@ def get_words(text):
     # Count words
     word_count = 1
     for i in range(len(text)):
-        if(text[i] == ' ' or text == '\n' or text == '\t'):
+        if(text[i] == ' ' or text[i] == '\n' or text[i] == '\t'):
             word_count += 1
     return word_count
 
