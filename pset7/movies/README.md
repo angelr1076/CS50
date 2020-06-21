@@ -28,5 +28,3 @@ Movie ratings, meanwhile, are stored in the ratings table. The first column in t
 Finally, the stars and directors tables match people to the movies in which they acted or directed. (Only principal stars and directors are included.) Each table has just two columns: movie_id and person_id, which reference a specific movie and person, respectively.
 
 The challenge ahead of you is to write SQL queries to answer a variety of different questions by selecting data from one or more of these tables.
-
-Specification
