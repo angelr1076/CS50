@@ -1,0 +1,185 @@
+:root {
+  --perfect-dark: "Orbitron", sans-serif;
+  --soft-blue: #348bd8;
+  --crimson: #dc143c;
+  --black: #202020;
+  --white: #fff;
+  --gray-white: #d3d3d3;
+  --charcoal: #444;
+  --key-lime: #4c4;
+  --lime-light: #bfb;
+  --melon: #14db92;
+}
+
+*,
+::after,
+::before {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  text-align: center;
+  font-size: 1.8em;
+  background-color: var(--black);
+  font-family: var(--perfect-dark);
+  color: var(--white);
+}
+
+header,
+footer {
+  padding: 25px 0;
+}
+
+header,
+footer,
+nav {
+  margin: 20px 0;
+}
+
+header,
+footer {
+  background-color: var(--charcoal);
+  font-family: var(--perfect-dark);
+  color: var(--gray-white);
+}
+
+section {
+  padding: 10px;
+}
+
+nav li {
+  background-color: var(--crimson);
+  padding: 10px;
+}
+
+nav ul,
+footer ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav li a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+.history h2,
+section h3 {
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.title {
+  color: var(--white);
+}
+
+.carousel,
+.sword {
+  width: 60%;
+  margin: auto;
+}
+
+.container-nav,
+.container-links {
+  display: grid;
+  grid-gap: 5px;
+}
+
+.gallery ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+}
+
+.gallery li {
+  flex-grow: 1;
+}
+
+.gallery li:last-child {
+  flex-grow: 10;
+}
+
+.gallery img {
+  max-height: 100%;
+  min-width: 100%;
+  object-fit: cover;
+  vertical-align: bottom;
+  padding: 5px;
+}
+
+.contact {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button {
+  width: 8rem;
+}
+
+.confirmation {
+  color: var(--white);
+}
+
+@media (max-aspect-ratio: 1/1) {
+  .gallery li {
+    height: 30vh;
+  }
+}
+
+@media (max-height: 480px) {
+  .gallery li {
+    height: 80vh;
+  }
+}
+
+@media (max-aspect-ratio: 1/1) and (max-width: 480px) {
+  .gallery ul {
+    flex-direction: row;
+  }
+
+  .gallery li {
+    height: auto;
+    width: 100%;
+  }
+
+  .gallery img {
+    width: 50%;
+    max-height: 75vh;
+    min-width: 0;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  body {
+    font-size: 1em;
+    margin: 0;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  body {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .container-nav,
+  .container-links {
+    grid-auto-flow: column;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .container-main {
+    grid-auto-flow: column;
+  }
+}
