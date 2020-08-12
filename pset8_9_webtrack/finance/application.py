@@ -82,7 +82,7 @@ def index():
         flash(f"You haven't purchased any shares, yet.")
         return render_template("index.html", get_portfolio=get_portfolio, cash_amount=cash_amount, portfolio_total=portfolio_total, username=username)
 
-    return render_template("index.html", get_portfolio=get_portfolio, cash_amount=cash_amount, portfolio_total=portfolio_total, username=username)
+    return redirect("/")
 
 
 @app.route("/buy", methods=["GET", "POST"])
