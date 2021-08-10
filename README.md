@@ -19,5 +19,5 @@ Project tracker for weekly CS50 projects.
        - Mobile
        - Android
        - iOS
-       - Web - chose web
+      - [x] - Web - chose web
 - [x] 11. Final Project
